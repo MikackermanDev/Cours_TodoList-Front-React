@@ -12,15 +12,18 @@ export default function Onglet2() {
 		toast.error(message, { autoClose: 3000, pauseOnFocusLoss: false });
 	};
 	const addTodo = () => {
-		if (!newTodo.trim()) {
+		const trimmedTodo = newTodo.trimEnd();
+
+		if (!trimmedTodo) {
 			// La zone de saisie est vide, afficher un toast et ne pas ajouter la tâche
 			showToastTodo("Veuillez entrer une tâche");
 			return;
 		}
 
-		setTodos([...todos, { text: newTodo, completed: false }]);
+		setTodos([...todos, { text: trimmedTodo, completed: false }]);
 		setNewTodo("");
 	};
+
 	const removeTodo = (index) => {
 		const newTodos = [...todos];
 		newTodos.splice(index, 1);
@@ -42,13 +45,26 @@ export default function Onglet2() {
 		setTodos(items);
 	};
 
+	const handleKeyDown = (event) => {
+		if (event.key === "Enter") {
+			event.preventDefault(); // Pour éviter le comportement par défaut de la touche "Entrée"
+			if (event.shiftKey) {
+				// Si la touche "Shift" est également enfoncée, ajoutez une nouvelle ligne à l'entrée
+				setNewTodo((currentValue) => currentValue + "\n");
+			} else {
+				// Sinon, ajoutez la tâche
+				addTodo();
+			}
+		}
+	};
+
 	return (
 		<div>
 			<p>Tâches :</p>
-			<input
-				type="text"
+			<textarea
 				value={newTodo}
 				onChange={(e) => setNewTodo(e.target.value)}
+				onKeyDown={handleKeyDown}
 				placeholder="Entrez une nouvelle tâche ici"
 			/>
 			<button onClick={addTodo}>Ajouter une tâche</button>
@@ -72,7 +88,15 @@ export default function Onglet2() {
 											}`}
 											onClick={() => toggleTodoCompletion(index)}
 										>
-											{todo.text}
+											{/* Remplacez les sauts de ligne par des éléments <br /> */}
+											{todo.text.split("\n").map((line, i) => (
+												<React.Fragment key={i}>
+													{line}
+													{i <
+														todo.text.split("\n").length -
+															1 && <br />}
+												</React.Fragment>
+											))}
 											<button
 												className="remove-button"
 												onClick={(e) => {

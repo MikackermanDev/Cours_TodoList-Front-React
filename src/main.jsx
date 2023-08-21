@@ -7,8 +7,8 @@ import Toast from "./Tools/Toastify/Toast";
 
 const route = ReactDOM.createRoot(document.getElementById("root"));
 route.render(
-	<React.StrictMode>
+	<>
 		<Toast />
 		<App />
-	</React.StrictMode>
+	</>
 );

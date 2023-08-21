@@ -1,0 +1,95 @@
+// Importation des hooks et des bibliothèques nécessaires de React et de react-toastify
+import React, { useState } from "react";
+
+export default function Onglet2() {
+	// Déclaration de l'état initial des tâches avec useState
+	const [todos, setTodos] = useState([
+		{ text: "Apprendre les Hooks", completed: false },
+	]);
+	// Déclaration de l'état initial de la nouvelle tâche avec useState
+	const [newTodo, setNewTodo] = useState("");
+
+	// Fonction pour ajouter une nouvelle tâche à la liste des tâches
+	const addTodo = () => {
+		setTodos([...todos, { text: newTodo, completed: false }]);
+		setNewTodo("");
+	};
+
+	/*
+Le ... est l’opérateur de décomposition (spread operator) en JavaScript. Il est utilisé pour décomposer les éléments d’un tableau ou les propriétés d’un objet .
+
+Dans le contexte de votre question, ...todos crée une nouvelle copie du tableau todos. C’est important parce que nous ne devrions jamais modifier directement l’état dans React. En créant une nouvelle copie de todos, nous pouvons modifier cette copie sans affecter l’état original.
+
+Voici un exemple simple pour illustrer comment cela fonctionne :
+
+let arr1 = [1, 2, 3];
+let arr2 = [...arr1, 4, 5]; // arr2 est maintenant [1, 2, 3, 4, 5]
+Copier
+Dans cet exemple, ...arr1 décompose les éléments de arr1, et nous pouvons ajouter de nouveaux éléments à la fin pour créer un nouveau tableau.
+*/
+
+	const removeTodo = (index) => {
+		// Crée une copie de l'état actuel des tâches.
+		// C'est important parce que nous ne devrions jamais modifier directement l'état dans React.
+		const newTodos = [...todos];
+
+		// Utilise la méthode splice pour supprimer l'élément à l'index spécifié.
+		// splice(index, 1) supprime un élément à partir de l'index spécifié.
+		newTodos.splice(index, 1);
+
+		// Met à jour l'état des tâches avec la nouvelle liste de tâches.
+		// Cela déclenchera un nouveau rendu du composant avec la liste de tâches mise à jour.
+		setTodos(newTodos);
+	};
+
+	// Fonction pour basculer l'état d'achèvement d'une tâche
+	const toggleTodoCompletion = (index) => {
+		// Crée une copie de l'état actuel des tâches.
+		// C'est important parce que nous ne devrions jamais modifier directement l'état dans React.
+		const newTodos = [...todos];
+
+		// Basculer l'état 'completed' de la tâche à l'index spécifié.
+		// Si 'completed' est actuellement vrai, il deviendra faux, et vice versa.
+		newTodos[index].completed = !newTodos[index].completed;
+
+		// Met à jour l'état des tâches avec la nouvelle liste de tâches.
+		// Cela déclenchera un nouveau rendu du composant avec la liste de tâches mise à jour.
+		setTodos(newTodos);
+	};
+
+	// Le composant rend une liste de tâches avec la possibilité d'ajouter et de supprimer des tâches
+	return (
+		<div>
+			<p>Tâches :</p>
+			<ul>
+				{todos.map((todo, index) => (
+					<li
+						key={index}
+						style={{
+							textDecoration: todo.completed ? "line-through" : "none",
+							color: todo.completed ? "grey" : "black",
+							cursor: "pointer",
+						}}
+						onClick={() => toggleTodoCompletion(index)}
+					>
+						{todo.text}
+						<button
+							onClick={(e) => {
+								e.stopPropagation();
+								removeTodo(index);
+							}}
+						>
+							❌
+						</button>
+					</li>
+				))}
+			</ul>
+			<input
+				type="text"
+				value={newTodo}
+				onChange={(e) => setNewTodo(e.target.value)}
+			/>
+			<button onClick={addTodo}>Ajouter une tâche</button>
+		</div>
+	);
+}

@@ -1,0 +1,5 @@
+@import url("../../config/variables.css");
+
+.head {
+	background-color: var(--head);
+}

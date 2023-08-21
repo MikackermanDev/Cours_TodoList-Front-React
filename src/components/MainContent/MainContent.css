@@ -1,0 +1,5 @@
+@import url("../../config/variables.css");
+
+.main {
+	background-color: var(--main);
+}

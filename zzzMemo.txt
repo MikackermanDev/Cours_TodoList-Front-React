@@ -1,0 +1,25 @@
+create vite@latest
+
+ - - - - - - - - - - - - -  
+move file out from vite-project folder but do not move index.html to public
+even trying in vite-config.js that's KO
+	
+  root: "public",
+	server: {
+		open: "index.html",
+	},
+  - - - - - - - - - - - - -  
+npm i
+
+
+in the html body : 
+	<div id="root"></div>
+	<script type="module" src="/src/main.jsx"></script>
+
+npm run dev
+
+no longer seems required (excepted in main.jsx) :
+	import React from "react";
+
+	npm i react-toastify
+	npm i react-router-dom

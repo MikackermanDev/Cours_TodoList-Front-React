@@ -1,0 +1,16 @@
+@import url("../../config/variables.css");
+
+.foot {
+	background-color: var(--foot);
+	display: flex;
+	justify-content: space-around;
+	width: 100%;
+	/* min-height: 50px; */
+	/* line-height: 50px; */
+	bottom: 0;
+	text-align: center;
+	text-decoration: none;
+	font-style: italic;
+	padding: 20px;
+	color: inherit;
+}

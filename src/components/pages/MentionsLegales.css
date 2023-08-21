@@ -1,0 +1,15 @@
+@import url("../../config/variables.css");
+
+.mentions {
+	background-color: var(--mention);
+}
+.mentions h1 {
+	color: rgb(130, 50, 190);
+}
+.mentions h2 {
+	color: rgb(220, 160, 60);
+}
+
+.mentions p {
+	line-height: 1.5;
+}

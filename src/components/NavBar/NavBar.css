@@ -1,0 +1,25 @@
+@import url("../../config/variables.css");
+
+* {
+	text-decoration: none;
+	color: inherit;
+}
+img {
+	width: 100px;
+	height: 100px;
+	opacity: 0.5;
+}
+.nav {
+	background-color: var(--nav);
+	display: flex;
+	justify-content: space-between;
+}
+
+.monConteneur {
+	display: flex;
+	align-items: center;
+}
+
+.nav .monConteneur div {
+	margin-right: 20px;
+}

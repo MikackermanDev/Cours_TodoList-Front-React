@@ -24,6 +24,15 @@ export default function Navbar() {
 						Onglet 2
 					</Link>
 				</div>
+				<div>
+					<Link to="/Onglet3">
+						<span></span>
+						<span></span>
+						<span></span>
+						<span></span>
+						Log in
+					</Link>
+				</div>
 			</div>
 		</div>
 	);

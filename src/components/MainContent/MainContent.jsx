@@ -1,10 +1,10 @@
 import "./MainContent.css";
 import React from "react";
 import { Navigate, Route, Routes } from "react-router-dom";
-import Error404 from "../pages/404";
-import Onglet1 from "../pages/Onglet1";
-import Onglet2 from "../pages/Onglet2";
-import Onglet3 from "../pages/Onglet3";
+import Error404 from "../Pages/404";
+import Onglet1 from "../Pages/Onglet1";
+import Onglet2 from "../Pages/Onglet2";
+import Onglet3 from "../Pages/Onglet3";
 
 import MentionsLegales from "../pages/MentionsLegales";
 
